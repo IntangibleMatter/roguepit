@@ -1,5 +1,5 @@
 class_name GridObject
-extends Node2D
+extends Area2d
 
 var game_board : GameGrid
 
