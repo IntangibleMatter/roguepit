@@ -1,4 +1,4 @@
-class_name GameGrid
+class_name GameInfo
 extends Resource
 
 # Vector2 : Node
