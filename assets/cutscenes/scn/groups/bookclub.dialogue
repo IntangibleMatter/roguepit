@@ -1,0 +1,48 @@
+~ start
+
+Eli: [#happy] Oh, hey! What's up?
+- What're you reading? => reading_branches
+- Goodbye
+	Eli: [#curious] Kind of a weird interaction, dude.
+	Bard: [#dry] Yeah, don't know why you just came up to leave.
+	Eli: [#curious] Well, bye I guess?
+	=> END
+
+~ reading_branches
+Jade: [#askfriendly] What're you reading?
+% => read_h2g2
+% => read_mi
+% => read_177
+% => read_hs
+
+~ read_h2g2
+Eli: [#happy] We're reading this british comedy sci-fi book.
+Bard: [#proud] My recommendation, one of my favourites.
+Bronwyn: [#neutral] It's alright. I do quite like the depressed robot, though.
+Bard: [#unimpressed] He's am Android, B.
+Bronwyn: [#eyeroll] Whatever.
+=> END
+
+~ read_mi
+Eli: [#excited] We're reading this book about vampires at a school in England.
+Bronwyn: [#smug] The main character had black hair with purple streaks and red tips.
+Bard: [#sheepish] I memorized this whole thing, I needed to get some other people to read it.
+
+~ read_177
+
+~ read_hs
+Eli: [#awkward] That's kind of a big question, gonna be real.
+Bronwyn: [#unimpressed] It's super long, needlessly convoluted, and seems to resent being read.
+Bard: [#excited] I can explain it if you want! I've read it a few times already/
+- Yeah, sure.
+- I'm good.
+	Bard: [#querying] You sure? It's really cool!
+	- Alright, tell me.
+	- No, I"m sure.
+
+~ bard_hs_infodump
+Bard: [#excited] Alright! So...
+Bard: [#excited] [speed=10] It's this story about these kids who are playing a game which is part of reality[next=auto]
+Bard: [#excited] [speed=10] that occurs in every universe.
+
+=> END

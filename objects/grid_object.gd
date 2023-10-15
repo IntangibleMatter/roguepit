@@ -1,5 +1,5 @@
 class_name GridObject
-extends Area2d
+extends Area2D
 
 var game_board : GameInfo
 
