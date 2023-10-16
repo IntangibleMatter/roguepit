@@ -1,48 +1,86 @@
 ~ start
 
-Eli: [#happy] Oh, hey! What's up?
-- What're you reading? => reading_branches
+Luca: [#happy] Oh, hey! What's up?
+- What're you reading?
+	Jade: [#askfriendly] What're you reading?
+	=> reading_branches
 - Goodbye
-	Eli: [#curious] Kind of a weird interaction, dude.
+	Luca: [#curious] Kind of a weird interaction, dude.
 	Bard: [#dry] Yeah, don't know why you just came up to leave.
-	Eli: [#curious] Well, bye I guess?
+	Luca: [#curious] Well, bye I guess?
 	=> END
 
 ~ reading_branches
-Jade: [#askfriendly] What're you reading?
-% => read_h2g2
-% => read_mi
-% => read_177
-% => read_hs
-
-~ read_h2g2
-Eli: [#happy] We're reading this british comedy sci-fi book.
-Bard: [#proud] My recommendation, one of my favourites.
-Bronwyn: [#neutral] It's alright. I do quite like the depressed robot, though.
-Bard: [#unimpressed] He's am Android, B.
-Bronwyn: [#eyeroll] Whatever.
+# do DialogueAssist.randomize_label_in_string(["h2g2", "mi", "177", "hs"], "books")
+do DialogueAssist.randomize_label(0, 5)
+if DialogueAssist.randomized_label_index== 0:
+	if not sd.books.has("h2g2"):
+		=> read_h2g2
+	else:
+		=> reading_branches
+elif DialogueAssist.randomized_label_index == 1:
+	if not sd.books.has("mi"):
+		=> read_mi
+	else:
+		=> reading_branches
+elif DialogueAssist.randomized_label_index == 2:
+	if not sd.books.has("177"):
+		=> read_177
+	else:
+		=> reading_branches
+elif DialogueAssist.randomized_label_index == 3:
+	if not sd.books.has("hs"):
+		=> read_hs
+	else:
+		=> reading_branches
+if sd.books.size() >= 4:
+	Luca: Nothing, actually! We've already read everything.
+else:
+	=> reading_branches
 => END
 
+~ read_h2g2
+do sd.books.append("h2g2")
+Luca: [#happy] We're reading this british comedy sci-fi book.
+Bard: [#proud] My recommendation, one of my favourites.
+Mieko: [#neutral] It's alright. I do quite like the depressed robot, though.
+Bard: [#unimpressed] He's an Android, M.
+Mieko: [#eyeroll] Whatever.
+=> reading_branches
+
 ~ read_mi
-Eli: [#excited] We're reading this book about vampires at a school in England.
-Bronwyn: [#smug] The main character had black hair with purple streaks and red tips.
+do sd.books.append("mi")
+Luca: [#excited] We're reading this book about vampires at a school in England.
+Mieko: [#smug] The main character has black hair with purple streaks and red tips.
 Bard: [#sheepish] I memorized this whole thing, I needed to get some other people to read it.
+=> reading_branches
 
 ~ read_177
+do sd.books.append("177")
+Luca: .....you really don't wanna know.
+=> reading_branches
 
 ~ read_hs
-Eli: [#awkward] That's kind of a big question, gonna be real.
-Bronwyn: [#unimpressed] It's super long, needlessly convoluted, and seems to resent being read.
-Bard: [#excited] I can explain it if you want! I've read it a few times already/
-- Yeah, sure.
+do sd.books.append("hs")
+Luca: [#awkward] That's kind of a big question, gonna be real.
+Mieko: [#unimpressed] It's super long, needlessly convoluted, and seems to resent being read.
+Bard: [#excited] I can explain it if you want! I've read it a few times already!
+- Yeah, sure. => bard_hs_infodump
 - I'm good.
 	Bard: [#querying] You sure? It's really cool!
-	- Alright, tell me.
+	- Alright, tell me. => bard_hs_infodump
 	- No, I"m sure.
+		Bard: [#unimpressed] Alright, then, your loss!
+		Meiko: [#eyeroll] Trust me, it really isn't.
+=> reading_branches
 
 ~ bard_hs_infodump
 Bard: [#excited] Alright! So...
-Bard: [#excited] [speed=10] It's this story about these kids who are playing a game which is part of reality[next=auto]
-Bard: [#excited] [speed=10] that occurs in every universe.
+Bard: [#excited] [speed=4] It's this story about these kids who are playing a game which is part of reality[next=0]
+Bard: [#excited] [speed=4] that occurs in every universe. This game, when it starts being played,[next=0]
+Bard: [#excited] [speed=4] Summons meteors that come and destroy your planet, forcing you into these pocket dimensions[next=0]
+Bard: [#excited] [speed=4] created by the game.[next=0]
+Bard: [#excited] [speed=4][next=0]
+Bard: [#excited] [speed=4][next=0]
 
-=> END
+=> reading_branches

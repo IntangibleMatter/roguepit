@@ -18,6 +18,12 @@ config/icon="res://icon.svg"
 
 GameManager="*res://structure/singletons/game_manager/game_manager.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+Save="*res://structure/singletons/data/save.gd"
+DialogueAssist="*res://structure/singletons/cutscene/dialogue_assist.gd"
+
+[dialogue_manager]
+
+general/states=["Save"]
 
 [display]
 
