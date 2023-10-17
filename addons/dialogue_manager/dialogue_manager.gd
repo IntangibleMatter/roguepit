@@ -200,7 +200,7 @@ func show_example_dialogue_balloon(resource: DialogueResource, title: String = "
 	var ExampleBalloonScene = load("res://addons/dialogue_manager/example_balloon/example_balloon.tscn")
 	var SmallExampleBalloonScene = load("res://addons/dialogue_manager/example_balloon/small_example_balloon.tscn")
 
-	var is_small_window: bool = ProjectSettings.get_setting("display/window/size/viewport_width") < 500
+	var is_small_window: bool = ProjectSettings.get_setting("display/window/size/viewport_width") < 400
 	var balloon: Node = (SmallExampleBalloonScene if is_small_window else ExampleBalloonScene).instantiate()
 	get_tree().current_scene.add_child(balloon)
 	balloon.start(resource, title, extra_game_states)
@@ -267,7 +267,7 @@ func get_line(resource: DialogueResource, key: String, extra_game_states: Array)
 				cummulative_weight += sibling.weight
 
 	# Check condtiions
-	elif data.type == DialogueConstants.TYPE_CONDITION:
+	if data.type == DialogueConstants.TYPE_CONDITION:
 		# "else" will have no actual condition
 		if await check_condition(data, extra_game_states):
 			return await get_line(resource, data.next_id + id_trail, extra_game_states)
@@ -583,6 +583,9 @@ func resolve(tokens: Array, extra_game_states: Array):
 							token["value"] = Color(args[0], args[1], args[2])
 						4:
 							token["value"] = Color(args[0], args[1], args[2], args[3])
+				"load":
+					token["type"] = "value"
+					token["value"] = load(args[0])
 				_:
 					if tokens[i - 1].type == DialogueConstants.TOKEN_DOT:
 						# If we are calling a deeper function then we need to collapse the

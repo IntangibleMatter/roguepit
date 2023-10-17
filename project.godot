@@ -37,7 +37,7 @@ enabled=PackedStringArray("res://addons/ActionIcon/plugin.cfg", "res://addons/di
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://assets/cutscenes/scn/test.dialogue", "res://assets/cutscenes/scn/groups/bookclub.dialogue")
+locale/translations_pot_files=PackedStringArray("res://assets/cutscenes/scn/test.dialogue", "res://assets/cutscenes/scn/groups/bookclub.dialogue", "res://assets/cutscenes/scn/char/bard/bard.dialogue")
 
 [rendering]
 

@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_10"
+type="Resource"
+uid="uid://dfcmejqirriaw"
+path="res://.godot/imported/bard.dialogue-32dd103e93f142cb61dfe3d4f446d4a9.tres"
+
+[deps]
+
+source_file="res://assets/cutscenes/scn/char/bard/bard.dialogue"
+dest_files=["res://.godot/imported/bard.dialogue-32dd103e93f142cb61dfe3d4f446d4a9.tres"]
+
+[params]
+
+defaults=true

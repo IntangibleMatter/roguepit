@@ -1,13 +1,11 @@
-class_name GameInfo
-extends Resource
+class_name GameBoard
+extends Node
 
-# Vector2 : Node
-var locations : Dictionary
+# Vector2 : Array[GameObject]
+var objects : Dictionary
 var tile_size : Vector2 = Vector2(16, 16)
+var tiles : PackedInt32Array
 
-func get_at_grid_pos(position: Vector2) -> Node:
-	return locations[position] if locations.has(position) else null
+func check_tile(position: Vector2i) -> int:
+	return 0
 
-
-func check_grid_pos(position: Vector2) -> bool:
-	return locations.has(position)
