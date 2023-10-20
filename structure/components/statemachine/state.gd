@@ -7,11 +7,11 @@ func handle_input(_event: InputEvent) -> void:
 	pass
 
 
-func frame_update() -> void:
+func update() -> void:
 	pass
 
 
-func update(_delta: float) -> void:
+func d_update(_delta: float) -> void:
 	pass
 
 

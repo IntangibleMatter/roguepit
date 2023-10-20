@@ -11,7 +11,7 @@ signal transitioned(state_name: String)
 func _ready() -> void:
 	await owner.ready
 	
-	owner.add_to_group("has_statemachine")
+	# owner.add_to_group("has_statemachine")
 	
 	for child in get_children():
 		child.state_machine = self
@@ -19,12 +19,16 @@ func _ready() -> void:
 	state.enter()
 
 
+func update() -> void:
+	state.update()
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	state.handle_input(event)
 
 
 func _process(delta: float) -> void:
-	state.update(delta)
+	state.d_update(delta)
 
 
 func _physics_process(delta: float) -> void:

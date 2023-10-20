@@ -20,8 +20,7 @@ var visible_offset : Vector2 = Vector2.ZERO
 @export var states : Array[Script]
 
 # String : State relationship
-var _states : Dictionary
-var _curr_state : String
+@onready var stateman := StateMachine.new()
 
 ## The board which this entity belongs to.
 var _grid : GameBoard
@@ -30,15 +29,16 @@ var _grid : GameBoard
 signal move(target: Vector2i)
 
 
-func change_state(state: String) -> void:
-	if _states.has(state):
-		_states[_curr_state].exit()
-		_curr_state = state
-		_states[_curr_state].enter()
+func _ready() -> void:
+	# await stateman.ready
+	for state in states:
+		var s := State.new()
+		s.set_script(state)
+		stateman.add_child(s)
 
 
 func update() -> void:
-	_states[_curr_state].frame_update()
+	stateman.update()
 
 
 func trymove(target: Vector2i) -> void:
