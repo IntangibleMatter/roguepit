@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bixit3hjcacbf"]
-
-[ext_resource type="Script" path="res://objects/grid_object.gd" id="1_ugpp3"]
-
-[node name="grid_object" type="Node"]
-script = ExtResource("1_ugpp3")
