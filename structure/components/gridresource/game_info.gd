@@ -14,6 +14,7 @@ func update() -> void:
 
 func check_position(position: Vector2i, type: GameObject.ACTOR_TYPE) -> GameObject:
 	if objects.has(position):
+		i
 		if not objects[position].is_empty():
 			for obj in objects[position]:
 				if obj.type == type:
