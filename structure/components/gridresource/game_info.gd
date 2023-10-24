@@ -14,7 +14,6 @@ func update() -> void:
 
 func check_position(position: Vector2i, type: GameObject.ACTOR_TYPE) -> GameObject:
 	if objects.has(position):
-		i
 		if not objects[position].is_empty():
 			for obj in objects[position]:
 				if obj.type == type:
@@ -33,4 +32,18 @@ func check_tile(position: Vector2i) -> int:
 	if tile:
 		return tile.get_custom_data("health")
 	return -1
+
+
+func spawn_object(object: GameObjectResource) -> void:
+	var virtual : GameObjectVirtual
+	var manager : GameObject = GameObject.new()
+
+	if object.scene_override != null:
+		var vhold := object.scene_override.instantiate()
+		if vhold is GameObjectVirtual:
+			virtual = vhold
+		else:
+			virtual = GameObjectVirtual.new()
+	
+
 

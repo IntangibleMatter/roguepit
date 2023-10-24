@@ -3,6 +3,8 @@ extends Resource
 
 enum ACTOR_TYPE {NONE, ITEM, ACTOR}
 
+@export var scene_override : PackedScene
+
 @export var type: ACTOR_TYPE
 
 @export var spr : Texture

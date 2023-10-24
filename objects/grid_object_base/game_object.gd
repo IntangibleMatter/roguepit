@@ -7,12 +7,6 @@ enum ACTOR_TYPE {NONE, ITEM, ACTOR}
 
 ## Position on the grid.
 var position : Vector2i
-## Offset of the sprite's position in tiles. Generally a decimal or zero.
-var visible_offset : Vector2 = Vector2.ZERO
-## The texture used for the sprite in rendering. Generally sliced up.
-@export var spr : Texture
-## Used to set [code]h_frames[/code] and [code]v_frames[/code] in the sprite spawned.
-@export var frames : Vector2i
 ## The animations that will be used with the sprite. Should reference
 ## [code].[/code], a sprite, as the target of its animations.
 @export var animations : AnimationLibrary
@@ -25,6 +19,8 @@ var visible_offset : Vector2 = Vector2.ZERO
 ## The board which this entity belongs to.
 var _grid : GameBoard
 
+var virtual : GameObjectVirtual
+
 ## Indicates to the grid that it wants to move. The target is the relative position in tiles.
 signal move(target: Vector2i)
 
@@ -35,6 +31,11 @@ func _ready() -> void:
 		var s := State.new()
 		s.set_script(state)
 		stateman.add_child(s)
+
+
+func create(from: GameObjectResource, virt: GameObjectVirtual) -> void:
+	virtual = virt
+	
 
 
 func update() -> void:
