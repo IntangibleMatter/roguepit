@@ -35,7 +35,7 @@ func _ready() -> void:
 
 func create(from: GameObjectResource, virt: GameObjectVirtual) -> void:
 	virtual = virt
-	
+
 
 
 func update() -> void:
@@ -53,5 +53,4 @@ func checkpos(target: Vector2i, check_floor : bool = true) -> bool:
 		return true
 	else:
 		return _grid.objects[position + target].type == type
-		
 
