@@ -39,11 +39,9 @@ func spawn_object(object: GameObjectResource) -> void:
 	var manager : GameObject = GameObject.new()
 
 	if object.scene_override != null:
-		var vhold := object.scene_override.instantiate()
+		var vhold := object.scene.instantiate()
 		if vhold is GameObjectVirtual:
 			virtual = vhold
 		else:
-			virtual = GameObjectVirtual.new()
-	
-
-
+			push_error("ERROR: Can't create object for resource {}. Scene is not GameObjectVirtual. Creating dummy instead.".format(object))
+	manager.create(object, virtual)

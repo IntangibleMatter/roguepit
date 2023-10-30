@@ -5,8 +5,10 @@ enum ACTOR_TYPE {NONE, ITEM, ACTOR}
 
 @export var type: GameObject.ACTOR_TYPE
 
-var animator : AnimationPlayer
+var controller: GameObject
 
-func _ready() -> void:
-	animator = AnimationPlayer.new()
-	add_child(animator)
+func animate(animation: String) -> void:
+	pass
+
+func move(target: Vector2i, params: Dictionary) -> void:
+	pass
