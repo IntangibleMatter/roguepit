@@ -1,13 +1,11 @@
 class_name GameObject
 extends Node
 
-enum ACTOR_TYPE {NONE, ITEM, ACTOR}
-
 @export var actor_resource : GameObjectResource
 
-@export var type: ACTOR_TYPE
+@export var type: GameObjectResource.ACTOR_TYPE = GameObjectResource.ACTOR_TYPE.NONE
 
-## Position on the grid.
+## Position on the grid. Should always be synced with position in the grid's objects Dict.
 var position : Vector2i
 
 @export var actions : Dictionary # <String:Action>
@@ -31,19 +29,23 @@ func _ready() -> void:
 func create(from: GameObjectResource, virt: GameObjectVirtual) -> void:
 	actor_resource = from
 	virtual = virt
-	create_actions(from.actions)
+	actions = create_actions(from.actions)
 
 
-func create_actions(s: Array[Script]) -> Array[State]:
-	var tempstates : Array[State]
+func create_actions(s: Array[GameObjectResource.ActionHolder]) -> Dictionary:
+	var tempactions : Dictionary
 	for script in s:
-		tempstates.append(add_action(script))
-	return tempstates
+		tempactions[script.title] = create_action(script.scr)
+	return tempactions
 
 
-func add_action(state: Script) -> State:
-	var s := State.new()
-	s.script = state
+func create_action(scr: Script) -> Action:
+	var s : Action
+	if scr.can_instantiate():
+		s = scr.new()
+	else:
+		push_error("ERROR: Script {} could not be instantiated.".format(scr))
+		s = Action.new()
 	return s
 
 
@@ -56,9 +58,9 @@ func trymove(target: Vector2i) -> void:
 
 
 func checkpos(target: Vector2i, check_floor : bool = true) -> bool:
-	if not _grid.objects.has(position + target):
+	if not _grid.updated_objects.has(position + target):
 		if check_floor:
 			return _grid.check_tile(position + target) > 0
 		return true
 	else:
-		return _grid.objects[position + target].type == type
+		return _grid.updated_objects[position + target].is_empty()
