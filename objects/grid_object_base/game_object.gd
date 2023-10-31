@@ -27,10 +27,12 @@ func _ready() -> void:
 		var s := State.new()
 		s.set_script(state)
 
+
 func create(from: GameObjectResource, virt: GameObjectVirtual) -> void:
 	actor_resource = from
 	virtual = virt
 	create_actions(from.actions)
+
 
 func create_actions(s: Array[Script]) -> Array[State]:
 	var tempstates : Array[State]
@@ -39,12 +41,10 @@ func create_actions(s: Array[Script]) -> Array[State]:
 	return tempstates
 
 
-
 func add_action(state: Script) -> State:
 	var s := State.new()
 	s.script = state
 	return s
-
 
 
 func update() -> void:
