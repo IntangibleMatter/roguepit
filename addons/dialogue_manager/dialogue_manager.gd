@@ -20,6 +20,7 @@ signal bridge_get_next_dialogue_line_completed(line)
 
 const DialogueConstants = preload("./constants.gd")
 const DialogueSettings = preload("./components/settings.gd")
+const DialogueResource = preload("./dialogue_resource.gd")
 const DialogueLine = preload("./dialogue_line.gd")
 const DialogueResponse = preload("./dialogue_response.gd")
 
@@ -87,6 +88,10 @@ func _ready() -> void:
 		var state: Node = get_node_or_null("/root/" + node_name)
 		if state:
 			game_states.append(state)
+
+	# Connect up the C# signals if need be
+	if ResourceLoader.exists("res://addons/dialogue_manager/DialogueManager.cs"):
+		load("res://addons/dialogue_manager/DialogueManager.cs").new().Prepare()
 
 
 ## Step through lines and run any mutations until we either hit some dialogue or the end of the conversation
@@ -213,7 +218,7 @@ func create_resource_from_text(text: String) -> Resource:
 
 
 ## Show the example balloon
-func show_example_dialogue_balloon(resource: DialogueResource, title: String = "", extra_game_states: Array = []) -> void:
+func show_example_dialogue_balloon(resource: DialogueResource, title: String = "", extra_game_states: Array = []) -> CanvasLayer:
 	var ExampleBalloonScene = load("res://addons/dialogue_manager/example_balloon/example_balloon.tscn")
 	var SmallExampleBalloonScene = load("res://addons/dialogue_manager/example_balloon/small_example_balloon.tscn")
 
@@ -221,6 +226,8 @@ func show_example_dialogue_balloon(resource: DialogueResource, title: String = "
 	var balloon: Node = (SmallExampleBalloonScene if is_small_window else ExampleBalloonScene).instantiate()
 	get_current_scene.call().add_child(balloon)
 	balloon.start(resource, title, extra_game_states)
+
+	return balloon
 
 
 ### Dotnet bridge
@@ -274,10 +281,10 @@ func get_line(resource: DialogueResource, key: String, extra_game_states: Array)
 
 	# Check for weighted random lines
 	if data.has("siblings"):
-		var result = randi() % data.siblings.reduce(func(total, sibling): return total + sibling.weight, 0)
-		var cummulative_weight = 0
+		var target_weight: float = randf_range(0, data.siblings.reduce(func(total, sibling): return total + sibling.weight, 0))
+		var cummulative_weight: float = 0
 		for sibling in data.siblings:
-			if result < cummulative_weight + sibling.weight:
+			if target_weight < cummulative_weight + sibling.weight:
 				data = resource.lines.get(sibling.id)
 				break
 			else:
