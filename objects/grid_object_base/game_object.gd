@@ -48,7 +48,7 @@ func add_action(state: Script) -> State:
 
 
 func update() -> void:
-	stateman.update()
+	pass
 
 
 func trymove(target: Vector2i) -> void:
