@@ -10,17 +10,15 @@ var settings := {
 
 var sd := {
 	"books": []
-}
+} #: get = d_get
 
 #func d_set(item: String, value: Variant) -> void:
 #	var true_item_path := item.split(".")
 #
-#func d_get(item: String) -> Variant:
-#	var true_item_path := item.split(".")
-#	if true_item_path.size() == 1:
-#		return sd[item] if sd.has(item) else 0
-#	else:
-#		return 0
+func d_get(key) -> Variant:
+	if not sd.has(key):
+		return 0
+	return sd[key]
 
 func save_game(run_data: Array[Node]) -> void:
 	var cfg := ConfigFile.new()

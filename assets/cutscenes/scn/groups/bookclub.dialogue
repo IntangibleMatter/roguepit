@@ -5,7 +5,7 @@ if sd.bard_hs == true:
 
 Luca: [#happy] Oh, hey! What's up?
 - What're you reading?
-	Jade: [#askfriendly] What're you reading?
+	char: [#askfriendly] What're you reading?
 	=> reading_branches
 - Goodbye
 	Luca: [#curious] Kind of a weird interaction, dude.
@@ -74,7 +74,7 @@ Bard: [#excited] I can explain it if you want! I've read it a few times already!
 	- Alright, tell me. => bard_hs_infodump
 	- No, I"m sure.
 		Bard: [#unimpressed] Alright, then, your loss!
-		Meiko: [#eyeroll] Trust me, it really isn't.
+		Mieko: [#eyeroll] Trust me, it really isn't.
 => reading_branches
 
 ~ bard_hs_infodump
@@ -87,22 +87,22 @@ Bard: [#excited] [speed=4] created by the game. So the story starts with this on
 Bard: [#excited] [speed=4] and one of them is this girl who lives on an island in the pacific all on her own and she has a dog[next=0.2]
 Bard: [#excited] [speed=4] who also happens to be kinda the gaurdian of Earth and so there's this guy from this purple planet and he's[next=0.2]
 Luca: [#forcedsmile] Get out while you still can. Trust us on this.
-Jade: [#concerned] Yeah, I think I probably will.
+char: [#concerned] Yeah, I think I probably will.
 => END
 
 ~ bard_hs_infodump_cont
 set sd.bard_hs = false
 Bard: [#excited] [speed=4] ...so anyways after the girl who did nothing wrong ever starts dating her friend's previous universe version, she becomes a punk sailor lesbian and[next=0.2]
-Meiko: [#question] Why did you come back? He's still talking...
+Mieko: [#question] Why did you come back? He's still talking...
 - No idea.
-	Jade: [#indifferent] Honestly, I have no idea.
+	char: [#indifferent] Honestly, I have no idea.
 - I couldn't tell.
-	Jade: [#indifferent] I couldn't tell he was still talking...
-Meiko: [#worried] Well, whatever! He might be almost at the end but you don't wanna be here when he starts ranting about the books they published after the main story was done.
+	char: [#indifferent] I couldn't tell he was still talking...
+Mieko: [#worried] Well, whatever! He might be almost at the end but you don't wanna be here when he starts ranting about the books they published after the main story was done.
 - I'll stay
-	Jade: [#caring] Might as well stay, even if I didn't hear the whole thing I can tell it means a lot to him.
+	char: [#caring] Might as well stay, even if I didn't hear the whole thing I can tell it means a lot to him.
 - I'll go
-	Jade: [#yikes] Yeah, I can tell. I'm gonna get out of here.
+	char: [#yikes] Yeah, I can tell. I'm gonna get out of here.
 	=> END
 
 Bard: [#excited] [speed=4]they all meet on the asteroid in the fourth universe, where they all talk and the girl who did nothing wrong jumps[next=0.2]
@@ -112,7 +112,7 @@ Bard: [#sobrecover] *sniff*
 Bard: [#sad] Anyways, I don't want to spoil the [wave amp=10]very[/wave] end for you...
 Bard: [#happy] Any questions?
 Luca: [#headshakeurgent] 
-jade: [#awkward] No, I think you explained it... pretty well.
+char: [#awkward] No, I think you explained it... pretty well.
 
 => END
 
