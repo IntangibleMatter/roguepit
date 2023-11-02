@@ -9,6 +9,7 @@ extends Node
 var position : Vector2i
 
 @export var actions : Dictionary # <String:Action>
+var last_action : String
 
 ## The board which this entity belongs to.
 var _grid : GameBoard
@@ -16,7 +17,7 @@ var _grid : GameBoard
 var virtual : GameObjectVirtual
 
 ## Indicates to the grid that it wants to move. The target is the relative position in tiles.
-signal move(target: Vector2i)
+signal moved(target: Vector2i)
 
 
 func _ready() -> void:
@@ -53,14 +54,24 @@ func update() -> void:
 	pass
 
 
-func trymove(target: Vector2i) -> void:
-	emit_signal("move", target)
+func checkmove(target: Vector2i) -> bool:
+	if not type == GameObjectResource.ACTOR_TYPE.PROJECTILE:
+		if _grid.check_tile(target) <= 0:
+			return false
+	return _grid.move_object(self, position, target)
 
 
-func checkpos(target: Vector2i, check_floor : bool = true) -> bool:
-	if not _grid.updated_objects.has(position + target):
-		if check_floor:
-			return _grid.check_tile(position + target) > 0
-		return true
-	else:
-		return _grid.updated_objects[position + target].is_empty()
+func move(target: Vector2i) -> void:
+	if not checkmove(target):
+		print("Err: {0} trying to move to {1}, but can't.".format([self, target]))
+		return
+	virtual.move(target, actions[last_action].get_animation())
+
+
+#func checkpos(target: Vector2i, check_floor : bool = true) -> bool:
+#	if not _grid.updated_objects.has(position + target):
+#		if check_floor:
+#			return _grid.check_tile(position + target) > 0
+#		return true
+#	else:
+#		return _grid.check_position(target, type) == null

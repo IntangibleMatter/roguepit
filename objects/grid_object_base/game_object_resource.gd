@@ -1,7 +1,7 @@
 class_name GameObjectResource
 extends Resource
 
-enum ACTOR_TYPE {NONE, ITEM, ACTOR}
+enum ACTOR_TYPE {ANY = -1, NONE, ITEM, ACTOR, PROJECTILE}
 
 @export var scene : PackedScene
 

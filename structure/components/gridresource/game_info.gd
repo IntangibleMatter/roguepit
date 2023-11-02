@@ -30,8 +30,8 @@ func brute_find_object(object: GameObject) -> Vector2i:
 		for obj in pos:
 			if obj == object:
 				return pos
-	# if you can't find it, panic and say it's at (0,0)
-	return Vector2i.ZERO
+	# if you can't find it, panic and say it's at the position the object thinks it has.
+	return object.position
 
 
 func check_position(position: Vector2i, type: GameObjectResource.ACTOR_TYPE) -> GameObject:
@@ -39,6 +39,8 @@ func check_position(position: Vector2i, type: GameObjectResource.ACTOR_TYPE) -> 
 	var checking_dict : Dictionary = updated_objects if updating else objects
 	if checking_dict.has(position):
 		if not checking_dict[position].is_empty():
+			if type == GameObjectResource.ACTOR_TYPE.ANY:
+				return checking_dict[position][0]
 			for obj in checking_dict[position]:
 				if obj.type == type:
 					return obj
