@@ -1,6 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqdihuib14mfg"]
+[gd_scene load_steps=4 format=3 uid="uid://cqdihuib14mfg"]
 
 [ext_resource type="Script" path="res://structure/components/grid/game_layer.gd" id="1_ukarl"]
+[ext_resource type="Script" path="res://structure/components/grid/game_board.gd" id="2_4kpjy"]
+[ext_resource type="Script" path="res://structure/components/tilemap/tilemapx.gd" id="2_8xtdg"]
 
-[node name="game" type="Node2D"]
+[node name="Layer" type="Node2D"]
 script = ExtResource("1_ukarl")
+
+[node name="TileMap" type="TileMap" parent="."]
+format = 2
+script = ExtResource("2_8xtdg")
+
+[node name="Objects" type="Node2D" parent="."]
+
+[node name="GameBoard" type="Node" parent="."]
+script = ExtResource("2_4kpjy")

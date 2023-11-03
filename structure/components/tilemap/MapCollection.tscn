@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://cmxny8rf1asi4"]
+
+[node name="MapCollection" type="Node2D"]
+
+[node name="Start" type="Node2D" parent="."]
+
+[node name="U" type="Node2D" parent="Start"]
+
+[node name="TileMap" type="TileMap" parent="Start/U"]
+format = 2
+
+[node name="L" type="Node2D" parent="Start"]
+
+[node name="TileMap" type="TileMap" parent="Start/L"]
+format = 2
+
+[node name="R" type="Node2D" parent="Start"]
+
+[node name="TileMap" type="TileMap" parent="Start/R"]
+format = 2
+
+[node name="Hub" type="Node2D" parent="."]
+
+[node name="TileMap" type="TileMap" parent="Hub"]
+format = 2
+
+[node name="Intersection" type="Node2D" parent="."]
+
+[node name="UDL" type="Node2D" parent="Intersection"]
+
+[node name="TileMap" type="TileMap" parent="Intersection/UDL"]
+format = 2
+
+[node name="UDR" type="Node2D" parent="Intersection"]
+
+[node name="TileMap" type="TileMap" parent="Intersection/UDR"]
+format = 2
+
+[node name="LRU" type="Node2D" parent="Intersection"]
+
+[node name="TileMap" type="TileMap" parent="Intersection/LRU"]
+format = 2
+
+[node name="LRD" type="Node2D" parent="Intersection"]
+
+[node name="TileMap" type="TileMap" parent="Intersection/LRD"]
+format = 2
+
+[node name="Item" type="Node2D" parent="."]
+
+[node name="U" type="Node2D" parent="Item"]
+
+[node name="TileMap" type="TileMap" parent="Item/U"]
+format = 2
+
+[node name="D" type="Node2D" parent="Item"]
+
+[node name="TileMap" type="TileMap" parent="Item/D"]
+format = 2
+
+[node name="L" type="Node2D" parent="Item"]
+
+[node name="TileMap" type="TileMap" parent="Item/L"]
+format = 2
+
+[node name="R" type="Node2D" parent="Item"]
+
+[node name="TileMap" type="TileMap" parent="Item/R"]
+format = 2
+
+[node name="End" type="Node2D" parent="."]
+editor_description = "Should have entrances on all sides, but may also"
+
+[node name="TileMap" type="TileMap" parent="End"]
+format = 2

@@ -10,13 +10,5 @@ func change_tile(coords: Vector2i, amount := -1) -> void:
 		health = -1
 	set_cell(0, coords, source_id)
 
-
-"""
-func _tile_data_runtime_update(layer: int, coords: Vector2i, tile_data: TileData) -> void:
+func generate(settings) -> void:
 	pass
-
-func _use_tile_data_runtime_update(layer: int, coords: Vector2i) -> bool:
-	if get_cell_source_id(layer, coords) == -1:
-		return false
-	return true
-"""
